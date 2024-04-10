@@ -10,44 +10,88 @@ class SecureType:
         return SecureType(self.val + SecurityMonitor.get_val(other), 
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
+    def __radd__(self, other):
+        return SecureType(self.val + SecurityMonitor.get_val(other),
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+
     def __sub__(self, other):
+        return SecureType(self.val - SecurityMonitor.get_val(other),
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rsub__(self, other):
         return SecureType(self.val - SecurityMonitor.get_val(other),
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __mul__(self, other):
         return SecureType(self.val * SecurityMonitor.get_val(other),
                           max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rmul__(self, other):
+        return SecureType(self.val * SecurityMonitor.get_val(other),
+                          max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __floordiv__(self, other):
         return SecureType(self.val // SecurityMonitor.get_val(other),
                           max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rfloordiv__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) // self.val,
+                          max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __mod__(self, other):
-        return SecureType(self.val + SecurityMonitor.get_val(other),
+        return SecureType(self.val % SecurityMonitor.get_val(other),
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rmod__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) % self.val,
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __pow__(self, other):
         return SecureType(self.val ** SecurityMonitor.get_val(other),
                           max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rpow__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) ** self.val,
+                          max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __and__(self, other):
         return SecureType(self.val & SecurityMonitor.get_val(other),
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rand__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) & self.val,
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __or__(self, other):
         return SecureType(self.val | SecurityMonitor.get_val(other),
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
+    def __ror__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) | self.val,
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+    
     def __xor__(self, other):
         return SecureType(self.val ^ SecurityMonitor.get_val(other),
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
+    def __rxor__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) ^ self.val,
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+    
     def __rshift__(self, other):
         return SecureType(self.val >> SecurityMonitor.get_val(other),
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rrshift__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) >> self.val,
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __lshift__(self, other):
         return SecureType(self.val << SecurityMonitor.get_val(other),
+                          max(self.sec, SecurityMonitor.get_sec(other)))
+    
+    def __rlshift__(self, other):
+        return SecureType(SecurityMonitor.get_val(other) << self.val,
                           max(self.sec, SecurityMonitor.get_sec(other)))
 
     def __lt__(self, other):
