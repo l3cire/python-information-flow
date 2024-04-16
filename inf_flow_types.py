@@ -147,6 +147,8 @@ class SecureType:
     def __repr__(self):
         return f"<SecureType: val: {self.val}, sec: {self.sec}>"
 
+class SecurityException(Exception):
+    '''Raise when security constraints are violated'''
 
 class SecurityMonitor:
 
@@ -194,3 +196,7 @@ class SecurityMonitor:
         SecurityMonitor.stack.pop()
         SecurityMonitor.stack_cumulative.pop()
 
+    @staticmethod
+    def check_assignment(expr):
+        if isinstance(expr, SecureType) and expr.sec < SecurityMonitor.get_pc():
+            raise SecurityException('Security level of the expression is too low')
