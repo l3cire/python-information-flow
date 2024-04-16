@@ -6,5 +6,9 @@ SecurityMonitor.push_pc(temp)
 if SecurityMonitor.get_val(temp):
     a = SecurityMonitor.sec_type(10)
 SecurityMonitor.pop_pc()
+temp = b > 5
+SecurityMonitor.push_pc(temp)
+if SecurityMonitor.get_val(temp):
+    a = SecurityMonitor.sec_type(10)
+SecurityMonitor.pop_pc()
 print(repr(a))
-print(a)

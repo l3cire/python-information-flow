@@ -3,6 +3,9 @@ class SecureType:
     sec = None
 
     def __init__(self, val, sec):
+        # Ensure val is an int or float; otherwise, throw an error
+        if not isinstance(val, (int, float)):
+            raise ValueError("SecureType can only be used with int or float")
         self.val = val
         self.sec = sec
 
@@ -152,6 +155,9 @@ class SecurityMonitor:
         if isinstance(expr, SecureType):
             expr.sec = max(expr.sec, SecurityMonitor.get_pc())
             return expr
+        # Check if expr is not a float int:
+        if not isinstance(expr, (int, float)):
+            raise ValueError("SecureType can only be used with int or float")
         return SecureType(expr, SecurityMonitor.get_pc())
 
     @staticmethod
