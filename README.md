@@ -1,0 +1,11 @@
+# Todo
+-[ ] Fix import system: we want pif to be imported as a package and so our transpiler does most of the work. The files in test should be able to run after that.
+-[ ] Implement `SecureBool`
+-[ ] Implement `SecureString`
+-[ ] Implement `SecurityException`
+-[ ] Fix `__isub__` onwards for `SecureNum`
+-[ ] Implement loops in analyzer
+-[ ] Implement try-catch in analyzer
+-[ ] Fix `check_assignment` in `SecurityMonitor`.
+-[ ] Add some more documentation/comments in the code.
+-[ ] Add more tests.
