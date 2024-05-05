@@ -1,13 +1,19 @@
 from secure_type import SecureType
-from pif.runtime.security_monitor import SecurityMonitor
+from secure_bool import SecureBool
 
 
 class SecureNum(SecureType):
     """The SecureNum type is a security wrapper around Python ints and floats."""
+
+    _val = None
+    _level = None
+
     def __init__(self, val, sec):
         # Ensure val is an int or float; otherwise, throw an error
         if not isinstance(val, (int, float)):
             raise ValueError("SecureNum can only be used with int or float")
+        if not isinstance(sec, int) or sec < 0:
+            raise ValueError("Security level should be a non-negative integer")
 
         # The underscore indicates this field should be private even
         # though there is no way of enforcing this in Python.
@@ -30,9 +36,6 @@ class SecureNum(SecureType):
 
     def get_value(self):
         return self._val
-
-    _val = None
-    _level = None
 
     @staticmethod
     def wrapper(other):
@@ -155,56 +158,36 @@ class SecureNum(SecureType):
 
     def __lt__(self, other):
         secure_other = SecureNum.wrapper(other)
-        return SecureNum(self._val < secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+        return SecureBool(self._val < secure_other.get_value(),
+                          max(self._level, secure_other.get_level()))
 
     def __gt__(self, other):
         secure_other = SecureNum.wrapper(other)
-        return SecureNum(self._val > secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+        return SecureBool(self._val > secure_other.get_value(),
+                          max(self._level, secure_other.get_level()))
 
     def __le__(self, other):
         secure_other = SecureNum.wrapper(other)
-        return SecureNum(self._val <= secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+        return SecureBool(self._val <= secure_other.get_value(),
+                          max(self._level, secure_other.get_level()))
 
     def __ge__(self, other):
         secure_other = SecureNum.wrapper(other)
-        return SecureNum(self._val >= secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+        return SecureBool(self._val >= secure_other.get_value(),
+                          max(self._level, secure_other.get_level()))
 
     def __eq__(self, other):
         secure_other = SecureNum.wrapper(other)
-        return SecureNum(self._val == secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+        return SecureBool(self._val == secure_other.get_value(),
+                          max(self._level, secure_other.get_level()))
 
     def __ne__(self, other):
         secure_other = SecureNum.wrapper(other)
-        return SecureNum(self._val != secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
-
-    def __isub__(self, other):
-        self._val -= SecurityMonitor.get_val(other)
-        self._level = max(self._level, SecurityMonitor.get_sec(other))
-
-    def __iadd__(self, other):
-        self._val += SecurityMonitor.get_val(other)
-        self._level = max(self._level, SecurityMonitor.get_sec(other))
-
-    def __imul__(self, other):
-        self._val *= SecurityMonitor.get_val(other)
-        self._level = max(self._level, SecurityMonitor.get_sec(other))
-
-    def __ifloordiv__(self, other):
-        self._val //= SecurityMonitor.get_val(other)
-        self._level = max(self._level, SecurityMonitor.get_sec(other))
-
-    def __imod__(self, other):
-        self._val %= SecurityMonitor.get_val(other)
-        self._level = max(self._level, SecurityMonitor.get_sec(other))
+        return SecureBool(self._val != secure_other.get_value(),
+                          max(self._level, secure_other.get_level()))
 
     def __str__(self):
         return str(self._val)
 
     def __repr__(self):
-        return f"<SecureType: val: {self._val}, sec: {self._level}>"
+        return f"<SecureNum: val: {self._val}, sec: {self._level}>"
