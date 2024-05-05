@@ -2,6 +2,7 @@ from secure_type import SecureType
 from secure_num import SecureNum
 from secure_bool import SecureBool
 
+
 class SecureString(SecureType):
     """The SecureString type is a security wrapper around Python ints and floats."""
     _val = None
@@ -36,6 +37,9 @@ class SecureString(SecureType):
     def get_value(self):
         return self._val
 
+    def get_length(self):
+        return SecureNum(len(self._val), self._level)
+
     @staticmethod
     def wrapper(other):
         if isinstance(other, SecureString):
@@ -48,20 +52,17 @@ class SecureString(SecureType):
     def __add__(self, other):
         secure_other = SecureString.wrapper(other)
         return SecureString(self._val + secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+                            max(self._level, secure_other.get_level()))
 
     def __radd__(self, other):
         secure_other = SecureString.wrapper(other)
-        return SecureString(self._val + secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+        return SecureString(secure_other.get_value() + self._val,
+                            max(self._level, secure_other.get_level()))
 
     def __mul__(self, other):
         secure_other = SecureNum.wrapper(other)
-        return SecureNum(self._val * secure_other.get_value(),
+        return SecureString(self._val * secure_other.get_value(),
                          max(self._level, secure_other.get_level()))
-
-    def __len__(self):
-        return SecureNum(len(self._val), self._level)
 
     def __lt__(self, other):
         secure_other = SecureString.wrapper(other)
@@ -92,6 +93,12 @@ class SecureString(SecureType):
         secure_other = SecureString.wrapper(other)
         return SecureBool(self._val != secure_other.get_value(),
                           max(self._level, secure_other.get_level()))
+
+    def __getitem__(self, item):
+        if isinstance(item, int):
+            if item >= len(self._val) or item < -len(self._val):
+                return SecureString('', self._level)
+        return SecureString(self._val[item], self._level)
 
     def __repr__(self):
         return f"<SecureNum: val: '{self._val}', sec: {self._level}>"
