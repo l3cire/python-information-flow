@@ -2,6 +2,7 @@ import ast
 
 
 class Analyzer(ast.NodeTransformer):
+    """Class to walk the ast and enforce our security features."""
     def visit_If(self, node):
         # Add the "s" attribute access here
         self.generic_visit(node)
@@ -66,14 +67,3 @@ class Analyzer(ast.NodeTransformer):
                 args=[node.value],
                 keywords=[]))
         ]
-
-
-f = open('solve.py', 'r')
-tree = ast.parse(f.read())
-
-b = Analyzer()
-b.visit(tree)
-ast.fix_missing_locations(tree)
-
-f2 = open('solve-mod.py', 'w')
-f2.write(ast.unparse(tree))
