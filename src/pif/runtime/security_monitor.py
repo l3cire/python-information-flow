@@ -2,7 +2,7 @@ from pif.stypes.secure_type import SecureType
 from pif.stypes.secure_num import SecureNum
 from pif.stypes.secure_bool import SecureBool
 from pif.stypes.secure_string import SecureString
-from security_exception import SecurityException
+from pif.runtime.security_exception import SecurityException
 
 type_map = {
     int: SecureNum,

@@ -169,7 +169,7 @@ def test_set_value():
 
 def test_set_value_str():
     try:
-        a.set_level("1")
+        a.set_value("1")
     except Exception as e:
         assert isinstance(e, ValueError)
         return
@@ -223,3 +223,19 @@ def test_wrapper_str():
         return
 
     assert False
+
+
+# testing that security levels update correctly
+def test_security():
+    a.set_level(0)
+    b.set_level(1)
+    assert (a + b).get_level() == 1
+    assert (a - b).get_level() == 1
+    assert (a * b).get_level() == 1
+    assert (a // b).get_level() == 1
+    assert (a % b).get_level() == 1
+    assert (a ** b).get_level() == 1
+    assert (b + 10).get_level() == 1
+    assert (10 + b).get_level() == 1
+    assert (2 ** b).get_level() == 1
+    assert (a == b).get_level() == 1
