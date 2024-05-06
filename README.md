@@ -6,7 +6,7 @@
 - [x] Fix `__isub__` onwards for `SecureNum`
 - [x] Implement loops in analyzer
 - [ ] Implement try-catch in analyzer
-- [ ] Fix `check_assignment` in `SecurityMonitor`.
+- [x] Fix `check_assignment` in `SecurityMonitor`.
 - [ ] Add some more documentation/comments in the code.
 - [ ] Add more tests.
 - [x] Use argparse for better argument parsing for the transpiler.
