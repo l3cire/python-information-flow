@@ -1,6 +1,6 @@
-from pif.src.pif.types.secure_type import SecureType
-from pif.src.pif.types.secure_num import SecureNum
-from pif.src.pif.types.secure_bool import SecureBool
+from pif.stypes.secure_type import SecureType
+from pif.stypes.secure_num import SecureNum
+from pif.stypes.secure_bool import SecureBool
 
 
 class SecureString(SecureType):
@@ -62,7 +62,7 @@ class SecureString(SecureType):
     def __mul__(self, other):
         secure_other = SecureNum.wrapper(other)
         return SecureString(self._val * secure_other.get_value(),
-                         max(self._level, secure_other.get_level()))
+                            max(self._level, secure_other.get_level()))
 
     def __lt__(self, other):
         secure_other = SecureString.wrapper(other)

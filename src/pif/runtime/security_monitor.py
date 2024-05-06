@@ -1,7 +1,7 @@
-from pif.src.pif.types.secure_type import SecureType
-from pif.src.pif.types.secure_num import SecureNum
-from pif.src.pif.types.secure_bool import SecureBool
-from pif.src.pif.types.secure_string import SecureString
+from pif.stypes.secure_type import SecureType
+from pif.stypes.secure_num import SecureNum
+from pif.stypes.secure_bool import SecureBool
+from pif.stypes.secure_string import SecureString
 from security_exception import SecurityException
 
 type_map = {

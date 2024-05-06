@@ -2,7 +2,7 @@ import ast
 import os.path
 import sys
 
-from pif.src.pif.runtime.analyzer import Analyzer
+from runtime.analyzer import Analyzer
 
 # Get command-line arguments
 args = sys.argv

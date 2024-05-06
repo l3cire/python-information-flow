@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class SecureType(ABC):
-    """An abstract base class for all security types. This Python does not technically
+    """An abstract base class for all security stypes. This Python does not technically
     have interfaces as in other OO languages, this is our way of recreating that functionality.
     All classes that inherit from this class have to implement the following methods."""
     @abstractmethod
