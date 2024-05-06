@@ -2,13 +2,12 @@
 - [x] Fix import system: we want pif to be imported as a package and so our transpiler does most of the work. The files in test should be able to run after that.
 - [x] Implement `SecureBool`
 - [x] Implement `SecureString`
-- [ ] Implement `SecurityException`
+- [x] Implement `SecurityException`
 - [x] Fix `__isub__` onwards for `SecureNum`
 - [x] Implement loops in analyzer
-- [ ] Implement try-catch in analyzer
 - [x] Fix `check_assignment` in `SecurityMonitor`.
-- [ ] Add some more documentation/comments in the code.
-- [ ] Add more tests.
+- [x] Add some more documentation/comments in the code.
+- [x] Add more tests.
 - [x] Use argparse for better argument parsing for the transpiler.
 - [x] Add ability to execute file immediately.
 - [ ] Figure out exec file import errors.
