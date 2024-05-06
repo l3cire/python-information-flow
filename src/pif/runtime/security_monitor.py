@@ -38,6 +38,11 @@ class SecurityMonitor:
             )
 
     @staticmethod
+    def clean():
+        SecurityMonitor.stack = []
+        SecurityMonitor.stack_cumulative = []
+
+    @staticmethod
     def get_pc():
         return 0 if len(SecurityMonitor.stack_cumulative) == 0 else SecurityMonitor.stack_cumulative[-1]
 
