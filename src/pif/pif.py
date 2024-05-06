@@ -2,7 +2,7 @@ import argparse
 import ast
 import os.path
 
-from runtime.analyzer import Analyzer
+from pif.runtime.analyzer import Analyzer
 
 parser = argparse.ArgumentParser(
     prog="pif",
