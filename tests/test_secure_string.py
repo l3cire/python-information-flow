@@ -97,6 +97,7 @@ def test_set_value_num():
 def test_set_level():
     a.set_level(1)
     assert a.get_level() == 1
+    a.set_level(0)
 
 
 def test_set_level_neg():
@@ -142,6 +143,19 @@ def test_wrapper_num():
     assert False
 
 
+# testing indexing and slices
+def test_index():
+    temp = a[0]
+    assert isinstance(temp, SecureString)
+    assert_val_level(temp, 'a', 0)
+
+
+def test_slice():
+    temp = a[1:3]
+    assert isinstance(temp, SecureString)
+    assert_val_level(temp, 'bc', 0)
+
+
 # testing that security levels update correctly
 def test_security():
     a.set_level(0)
@@ -152,3 +166,4 @@ def test_security():
     assert (b + "aaa").get_level() == 1
     assert ("aaa" + b).get_level() == 1
     assert (a == b).get_level() == 1
+    assert b[0].get_level() == 1
