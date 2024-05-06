@@ -1,6 +1,6 @@
-from secure_type import SecureType
-from secure_num import SecureNum
-from secure_bool import SecureBool
+from pif.src.pif.types.secure_type import SecureType
+from pif.src.pif.types.secure_num import SecureNum
+from pif.src.pif.types.secure_bool import SecureBool
 
 
 class SecureString(SecureType):
@@ -101,7 +101,7 @@ class SecureString(SecureType):
         return SecureString(self._val[item], self._level)
 
     def __repr__(self):
-        return f"<SecureNum: val: '{self._val}', sec: {self._level}>"
+        return f"<SecureString: val: '{self._val}', sec: {self._level}>"
 
     def __str__(self):
         return self._val

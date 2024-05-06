@@ -1,5 +1,5 @@
-from secure_type import SecureType
-from secure_bool import SecureBool
+from pif.src.pif.types.secure_type import SecureType
+from pif.src.pif.types.secure_bool import SecureBool
 
 
 class SecureNum(SecureType):

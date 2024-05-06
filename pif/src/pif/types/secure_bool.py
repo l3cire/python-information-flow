@@ -1,4 +1,4 @@
-from secure_type import SecureType
+from pif.src.pif.types.secure_type import SecureType
 
 
 class SecureBool(SecureType):

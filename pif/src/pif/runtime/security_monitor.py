@@ -20,7 +20,7 @@ class SecurityMonitor:
             return expr
 
         if type(expr) in type_map:
-            type_map[type(expr)](expr, SecurityMonitor.get_pc())
+            return type_map[type(expr)](expr, SecurityMonitor.get_pc())
         else:
             raise ValueError("Python type " + type(expr) + "not supported in PIF")
 
