@@ -1,4 +1,4 @@
-from pif.types.secure_num import SecureNum
+from pif import pif
 
 # Check basic functionality
 print(repr(SecureNum(5, 3)))
