@@ -9,7 +9,7 @@ __pycache__/
 
 # Don't upload outputted files
 *-mod.py
-
+.DS_Store
 # Distribution / packaging
 .Python
 build/
