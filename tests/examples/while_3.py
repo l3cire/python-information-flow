@@ -5,7 +5,7 @@ b = SecureNum(2, 10)
 c = SecureNum(2, 0)
 
 while b > 0:
-    b = b - 1
+    b -= 1
     if b == 0:
         a = SecureNum(1, 2)
 

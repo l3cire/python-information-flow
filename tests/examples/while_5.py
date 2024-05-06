@@ -4,7 +4,7 @@ a = SecureNum(1, 0)
 b = SecureNum(2, 10)
 
 while b > 0:
-    b = b - 1
+    b -= 1
 else:
     b = 7
 

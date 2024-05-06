@@ -151,3 +151,10 @@ class Analyzer(ast.NodeTransformer):
                 args=[node.value],
                 keywords=[]))
         ]
+
+    def visit_AugAssign(self, node):
+        self.generic_visit(node)
+        return [
+            check_assignment(node.target),
+            node
+        ]
