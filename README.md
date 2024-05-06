@@ -1,5 +1,5 @@
 # Todo
-- [ ] Fix import system: we want pif to be imported as a package and so our transpiler does most of the work. The files in test should be able to run after that.
+- [x] Fix import system: we want pif to be imported as a package and so our transpiler does most of the work. The files in test should be able to run after that.
 - [x] Implement `SecureBool`
 - [x] Implement `SecureString`
 - [ ] Implement `SecurityException`
@@ -9,5 +9,6 @@
 - [ ] Fix `check_assignment` in `SecurityMonitor`.
 - [ ] Add some more documentation/comments in the code.
 - [ ] Add more tests.
-- [ ] Use argparse for better argument parsing for the transpiler.
-- [ ] Add ability to execute file immediately.
+- [x] Use argparse for better argument parsing for the transpiler.
+- [x] Add ability to execute file immediately.
+- [ ] Figure out exec file import errors.
